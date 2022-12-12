@@ -384,7 +384,7 @@ def sys_solve_iterative_jacobi(s: System, epsilon: Decimal) -> Matrix:
 
     return x
 
-def sys_solve_iterative_gauss_seidal(s: System, epsilon: Decimal) -> Matrix:
+def sys_solve_iterative_gauss_seidel(s: System, epsilon: Decimal) -> Matrix:
     a = mat_copy(s.a)
 
     d = mat_diag(a)
@@ -429,7 +429,7 @@ def sys_solve_iterative_gauss_seidal(s: System, epsilon: Decimal) -> Matrix:
 ###
 getcontext().prec = HIGH_PRECISION
 
-s = sys_random(4,24)
+s = sys_random(10, 1)
 sys_print(s)
 
 ###
@@ -439,9 +439,6 @@ sys_print(s)
 ###
 getcontext().prec = LOW_PRECISION
 
-x1 = sys_solve_gaussian_elimination(s)
-x2 = sys_solve_partial_pivoting(s)
-x3 = sys_solve_scaled_partial_pivoting(s)
-mat_print(x1)
-mat_print(x2)
-mat_print(x3)
+x = sys_solve_gaussian_elimination(s)
+mat_print(x)
+print(error(s.x, x))
